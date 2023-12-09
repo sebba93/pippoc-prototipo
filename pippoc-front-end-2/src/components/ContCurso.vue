@@ -14,9 +14,33 @@
             <v-window-item value="one">
                 <v-card variant="outlined">
                     <h2>Sección 1</h2>
+
+
+                    <li v-for="documento in documentos" :key="documento.id">
+                        <h1 v-if="documento.tipo==='Imagen'">
+                            <v-checkbox color="indigo">
+                                <template v-slot:label><div>
+                                    <h3><v-icon>mdi-image</v-icon> {{ documento.nombre }} </h3>
+                                </div></template>
+                            </v-checkbox>  
+                        </h1>
+                        <h1 v-else-if="documento.tipo==='texto'">
+                            <v-checkbox color="indigo">
+                                <template v-slot:label><div>
+                                    <h3><v-icon>mdi-file</v-icon>{{ documento.nombre }}</h3>
+                                </div></template>
+                            </v-checkbox>
+                        </h1>
+
+
+
+
+                        
+                    </li>
+
                     <v-checkbox color="indigo">
                         <template v-slot:label><div>
-                            <h3><v-icon>mdi-file</v-icon> 1.1 Lectura - El Peligro en el Trabajao</h3>
+                            <h3><v-icon>mdi-file</v-icon> 1.1 Lectura - El Peligro en el Trabajo</h3>
                         </div></template>
                     </v-checkbox>
 

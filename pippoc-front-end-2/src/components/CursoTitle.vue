@@ -15,22 +15,6 @@
 
         </v-card-actions>
     </v-card>
-
-    <div>
-      <h2>List of Courses</h2>
-      <ul>
-        <li v-for="curso in cursos" :key="curso.id">
-          {{ curso.descripcion }} - {{ curso.categoria }}
-        </li>
-      </ul>
-      <h2>List of Participantes</h2>
-      <ul>
-        <li v-for="participante in participantes" :key="participante.id">
-          {{ participante.nombre }} - {{ participante.apellido }} - {{ participante.correo }}
-        </li>
-      </ul>
-    </div>
-
     <v-divider></v-divider>
 </template>
 
