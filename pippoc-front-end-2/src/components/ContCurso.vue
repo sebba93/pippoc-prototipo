@@ -83,11 +83,28 @@
 
     </v-card>
   </template>
-
+  
 <script>
-  export default {
-    data: () => ({
-      tab: null,
-    }),
-  }
+import { getDocumentos } from '@/axios/documentosAxios';
+
+export default {
+  data() {
+    return {
+      documentos: [],
+      tab: null, // Add a tab property for v-model
+    };
+  },
+  mounted() {
+    // Fetch documentos from Django backend using the imported function
+    getDocumentos()
+      .then(data => {
+        this.documentos = data;
+        // Do any additional processing with documentos if needed
+      })
+      .catch(error => {
+        // Handle error if needed
+      });
+  },
+  // Other methods and component logic
+};
 </script>
