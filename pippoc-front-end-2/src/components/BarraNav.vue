@@ -4,11 +4,16 @@
       dark
       prominent
       image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+
+      <v-img max-width="100" src="../static/pippoc_logo.jpg" ></v-img>
+      
       <v-toolbar-title style="color:white">P.I.P.P.O.C.</v-toolbar-title>
 
       <h4 style="color:white">
         Bienvenido FERIA PROTOTIPO
       </h4>
+
+      <v-spacer/>
 
       <v-btn color="white">
         Cerrar Sesión

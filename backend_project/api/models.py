@@ -10,20 +10,22 @@ class Participante(models.Model):
 class Tutor_IA(models.Model):
     nombre = models.CharField(max_length=30)
 
+class Curso(models.Model):
+    descripcion = models.CharField(max_length=30)
+    categoria = models.CharField(max_length=30)
+    participantes = models.ManyToManyField(Participante)
 
 class Tutor(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     correo = models.CharField(max_length=30)
     especialidades = models.CharField(max_length=30)
-
-class Curso(models.Model):
-    descripcion = models.CharField(max_length=30)
-    categoria = models.CharField(max_length=30)
-
+    #FK
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True)
 
 class Documento(models.Model):
     nombre = models.CharField(max_length=60)
     tipo = models.CharField(max_length=30)
     formato = models.CharField(max_length=30)
-    archivo = models.BinaryField(null=False)
+    #FK
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True)
