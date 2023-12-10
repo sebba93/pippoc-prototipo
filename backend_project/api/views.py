@@ -30,7 +30,7 @@ class DocumentoViewSet(viewsets.ModelViewSet):
     queryset = Documento.objects.all()
     serializer_class = DocumentoSerializer
 
-def create(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         file_content = request.data.get('documento', None)
 
         if file_content is not None:
@@ -56,3 +56,4 @@ def create(self, request, *args, **kwargs):
             )
             serializer = self.get_serializer(documento_instance)
             return Response(serializer.data, status=201)
+        

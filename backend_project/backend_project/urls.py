@@ -30,4 +30,5 @@ router.register(r'documentos', DocumentoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('api/', include('api.urls'))
 ]
