@@ -1,13 +1,28 @@
 <script setup>
-import BarraNav from './components/BarraNav.vue'
-import ContCurso from './components/ContCurso.vue'
-import CursoTitle from './components/CursoTitle.vue'
-import Chat from './components/Chat.vue'
+import { ref, computed } from 'vue'
+import Home from './views/HelloWorld.vue'
+import VistaCurso from './views/VistaCurso.vue'
+import VistaHome from './views/VistaHome.vue'
+
+const routes = {
+  '/': Home,
+  '/curso': VistaCurso,
+  '/home': VistaHome
+}
+
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
+})
 </script>
 
 <template>
-  <barra-nav/>
-  <curso-title/>
-  <cont-curso/>
-  <chat/>
+  <a href="#/home">VistaHome</a> |
+  <a href="#/curso">VistaCurso</a>
+  <component :is="currentView" />
 </template>
