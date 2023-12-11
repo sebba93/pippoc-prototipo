@@ -1,104 +1,56 @@
 <template>
     <v-card variant="ourlined">
+        <div class="mt-2 ml-4 mb-2">
+            <v-btn @click="new_tab">
+                Agregar Unidad
+            </v-btn>
+        </div>
+        
         <v-tabs
             v-model="tab"
             bg-color="indigo"
         >
-            <v-tab value="one">Unidad 1</v-tab>
-            <v-tab value="two">Unidad 2</v-tab>
-            <v-tab value="three">Unidad 3</v-tab>
+            <v-tab v-for="(item, i) in items" :value="i"> {{ item }} </v-tab>
         </v-tabs>
     
         <v-card-text>
             <v-window v-model="tab">
-            <v-window-item value="one">
+            <v-window-item v-for="(item, i) in items" :value="i">
                 <v-card variant="outlined">
-                    <h2>Sección 1</h2>
+                    <h2>Unidad {{ i+1 }}: Sección 1</h2>
 
-
-                    <li v-for="documento in documentos" :key="documento.id">
-                        <h1 v-if="documento.tipo==='Imagen'">
-                            <v-checkbox color="indigo">
-                                <template v-slot:label><div>
-                                    <h3><v-icon>mdi-image</v-icon> {{ documento.nombre }} </h3>
-                                </div></template>
-                            </v-checkbox>  
-                        </h1>
-                        <h1 v-else-if="documento.tipo==='texto'">
-                            <v-checkbox color="indigo">
-                                <template v-slot:label><div>
-                                    <h3><v-icon>mdi-file</v-icon>{{ documento.nombre }}</h3>
-                                </div></template>
-                            </v-checkbox>
-                        </h1>
-
-
-
-
-                        
-                    </li>
-
-                    <v-checkbox color="indigo">
-                        <template v-slot:label><div>
-                            <h3><v-icon>mdi-file</v-icon> 1.1 Lectura - El Peligro en el Trabajo</h3>
-                        </div></template>
+                    <v-checkbox color="indigo" v-for="(item,j) in elementos" >
+                        <template v-slot:label>
+                            <div>
+                                <v-row class="justified-center align-center">
+                                    <h3><v-icon>mdi-file</v-icon> {{ item }} </h3>
+                                    <v-btn class="ml-4" width="100" :href="links[j]" >Ver</v-btn>
+                                </v-row>
+                            </div>
+                        </template>
                     </v-checkbox>
 
-                    <v-checkbox color="indigo">
-                        <template v-slot:label><div>
-                            <h3><v-icon>mdi-gesture-tap-box</v-icon> 1.2 Actividad - Recordando Conceptos </h3>
-                        </div></template>
-                    </v-checkbox>
-
-                    <v-checkbox color="indigo">
-                        <template v-slot:label><div>
-                            <h3><v-icon>mdi-video-vintage</v-icon> 1.3 Video - Accidentes Reales</h3>
-                        </div></template>
-                    </v-checkbox>
-
-                    
-                    <v-btn @click="FileUploader = !FileUploader"> Agregar Elemento a Sección</v-btn>
-                    <FileUploader v-model="FileUploader"/>
+                    <div class="ma-3">
+                        <v-row class="ma-3">
+                            <v-btn @click="DocList = !DocList">Agregar elemento</v-btn>
+                            <DocList v-model="DocList" :docs="documentos" :elementos="elementos" :archivos="archivos" :links="links"/>
+                            <v-btn @click="FileUploader = !FileUploader" class="ml-2"> Subir archivo</v-btn>
+                            <FileUploader v-model="FileUploader"/>
+                        </v-row>
+                    </div>
                 </v-card>
 
                 <v-divider></v-divider>
 
                 <v-card variant="outlined">
-                    <h2>Sección 2</h2>
+                    <h2>Unidad {{ i+1 }}: Sección 2</h2>
                     <v-checkbox color="indigo">
                         <template v-slot:label><div>
-                            <h3><v-icon>mdi-note-edit</v-icon> Prueba 1: El Peligro en el Trabajao </h3>
+                            <h3><v-icon>mdi-note-edit</v-icon> Prueba {{ i+1 }} </h3>
                         </div></template>
                     </v-checkbox>
                 </v-card>
             </v-window-item>
-  
-            <v-window-item value="two">
-                <v-card variant="outlined">
-                        <h2>Anexos</h2>
-                        <v-checkbox color="indigo">
-                            <template v-slot:label>
-                                <div>
-                                    <h3><v-icon>mdi-folder</v-icon> 2.1 Investiga - Carpeta de Documentos </h3>
-                                </div>
-                            </template>
-                        </v-checkbox>
-                    </v-card> 
-            </v-window-item>
-    
-            <v-window-item value="three">
-                <v-card variant="outlined">
-                        <h2>Anexos</h2>
-                        <v-checkbox color="indigo">
-                            <template v-slot:label>
-                                <div>
-                                    <h3><v-icon>mdi-file-pdf-box</v-icon> 3.1 Leamos - Investigación de Campo </h3>
-                                </div>
-                            </template>
-                        </v-checkbox>
-                    </v-card> 
-            </v-window-item>
-
             </v-window>
         </v-card-text>
 
@@ -112,29 +64,74 @@
 <script>
 import { getDocumentos } from '@/axios/documentosAxios';
 import FileUploader from '@/components/displays/FileUploader.vue'
+import DocList from '@/components/displays/DocList.vue'
 
 export default {
   data() {
     return {
       documentos: [],
-      tab: null, // Add a tab property for v-model
-      FileUploader: false
+      formatos: [],
+      archivos: [],
+      tab: null,
+      items: ["Unidad 1", "Unidad 2", "Unidad 3"], // Add a tab property for v-model,
+      titulo:null,
+      elementos: [],
+      links: [],
+      FileUploader: false,
+      DocList: false
     };
   },
   components:{
-    FileUploader
+    FileUploader,
+    DocList
   },
-  mounted() {
+  methods:{
+    new_tab(){
+        const r = /(\d+)/;
+        const last_item = this.items.slice(-1)[0]
+        const next_unit = parseInt(last_item.match(r)[0]) + 1
+        const new_item = "Unidad " + String(next_unit)
+        this.items.push(new_item)
+    }
+  },
+  created() {
     // Fetch documentos from Django backend using the imported function
     getDocumentos()
       .then(data => {
-        this.documentos = data;
+        this.documentos = data.map(function(doc){
+            return doc.nombre
+        })
+        this.formatos = data.map(function(doc){
+            return doc.formato
+        })
+        this.archivos = data.map(function(doc){
+            return doc.archivo
+        })
         // Do any additional processing with documentos if needed
       })
       .catch(error => {
         // Handle error if needed
       });
   },
+  updated(){
+    getDocumentos()
+      .then(data => {
+        this.documentos = data.map(function(doc){
+            return doc.nombre
+        })
+        this.formatos = data.map(function(doc){
+            return doc.formato
+        })
+        this.archivos = data.map(function(doc){
+            return doc.archivo
+        })
+        // Do any additional processing with documentos if needed
+      })
+      .catch(error => {
+        // Handle error if needed
+      });
+  }
+
   // Other methods and component logic
 };
 </script>
