@@ -6,4 +6,9 @@
 <template>
     <BarraNav/>
     <CarruselHome/>
+    <div justify="center" align="center">
+        <v-btn class="ma-5" href="/#/curso">
+            Curso de prevención de riesgos
+        </v-btn>
+    </div>
 </template>

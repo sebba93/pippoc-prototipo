@@ -1,13 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
-import Home from './views/HelloWorld.vue'
 import VistaCurso from './views/VistaCurso.vue'
 import VistaHome from './views/VistaHome.vue'
 
 const routes = {
-  '/': Home,
   '/curso': VistaCurso,
-  '/home': VistaHome
+  '/': VistaHome
 }
 
 const currentPath = ref(window.location.hash)
@@ -22,7 +20,5 @@ const currentView = computed(() => {
 </script>
 
 <template>
-  <a href="#/home">VistaHome</a> |
-  <a href="#/curso">VistaCurso</a>
   <component :is="currentView" />
 </template>

@@ -3,13 +3,13 @@
     <v-toolbar
       dark
       prominent
-      image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+      color="#1C5A71">
 
-      <v-img max-width="100" src="../static/pippoc_logo.jpg"></v-img>
-      
-      <v-toolbar-title style="color:white">P.I.P.P.O.C.</v-toolbar-title>
+      <v-btn href="#/"> <v-img src="../static/pippoc_logo.jpg"/></v-btn>
 
-      <h4 style="color:white">
+      <v-toolbar-title href="#/home" style="color:white">P.I.P.P.O.C.</v-toolbar-title>
+
+      <h4 href="#/home" style="color:white">
         Bienvenido FERIA PROTOTIPO
       </h4>
 

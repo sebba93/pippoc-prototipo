@@ -37,7 +37,6 @@
   ></v-carousel-item>
 </v-carousel>
 
-<h1>AQUI VA LA INFO DEL TRIPTICO</h1>
 
 </template>
 
