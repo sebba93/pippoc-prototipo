@@ -55,7 +55,6 @@
         methods:{
             insertar(){
                 this.$props.elementos.push(this.nombre)
-                console.log(this.link)
                 this.$props.links.push(this.link)
             }
         }

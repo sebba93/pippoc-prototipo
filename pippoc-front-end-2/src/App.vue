@@ -2,10 +2,12 @@
 import { ref, computed } from 'vue'
 import VistaCurso from './views/VistaCurso.vue'
 import VistaHome from './views/VistaHome.vue'
+import HelloWorld from './views/HelloWorld.vue'
 
 const routes = {
   '/curso': VistaCurso,
-  '/': VistaHome
+  '/': VistaHome,
+  '/wip': HelloWorld
 }
 
 const currentPath = ref(window.location.hash)

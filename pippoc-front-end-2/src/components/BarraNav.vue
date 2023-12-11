@@ -5,11 +5,11 @@
       prominent
       color="#1C5A71">
 
-      <v-btn href="#/"> <v-img src="../static/pippoc_logo.jpg"/></v-btn>
+      <v-btn href="/#" ><v-img width="60" src="../static/pippoc_logo.jpg"/></v-btn>
 
       <v-toolbar-title href="#/home" style="color:white">P.I.P.P.O.C.</v-toolbar-title>
 
-      <h4 href="#/home" style="color:white">
+      <h4 href="/#" style="color:white">
         Bienvenido FERIA PROTOTIPO
       </h4>
 

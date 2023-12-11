@@ -1,7 +1,7 @@
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
-    <HelloWorld/>
+    <h1>PROXIMAMENTE</h1>
+    <a href="/#/curso">Volver</a>
 </template>

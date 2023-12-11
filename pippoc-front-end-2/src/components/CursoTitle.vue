@@ -8,9 +8,9 @@
     >
         <v-card-actions>
             <v-lists>
-                <h1 class="ma-1"><v-icon>mdi-file-outline</v-icon> Reglamento del Curso </h1>
-                <h1 class="ma-1"><v-icon>mdi-folder</v-icon> Carpeta Genera del Curso </h1>
-                <h1 class="ma-1"><v-icon>mdi-file-outline</v-icon> Planificación General del Curso </h1>
+                <h1 class="ma-1"> <v-icon>mdi-file-outline</v-icon> <a class="btn btn-link" href="#/wip">Reglamento del Curso</a> </h1>
+                <h1 class="ma-1"><v-icon>mdi-folder</v-icon> <a class="btn btn-link" href="#/wip"> Carpeta General del Curso </a></h1>
+                <h1 class="ma-1"><v-icon>mdi-file-outline</v-icon> <a class="btn btn-link" href="#/wip"> Planificación General del Curso </a></h1>
             </v-lists>
 
         </v-card-actions>

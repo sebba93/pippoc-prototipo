@@ -8,7 +8,7 @@
         
         <v-tabs
             v-model="tab"
-            bg-color="indigo"
+            bg-color="#1C5A71"
         >
             <v-tab v-for="(item, i) in items" :value="i"> {{ item }} </v-tab>
         </v-tabs>
@@ -17,15 +17,12 @@
             <v-window v-model="tab">
             <v-window-item v-for="(item, i) in items" :value="i">
                 <v-card variant="outlined">
-                    <h2>Unidad {{ i+1 }}: Sección 1</h2>
+                    <h2 class="ma-3">Unidad {{ i+1 }}: Sección 1</h2>
 
-                    <v-checkbox color="indigo" v-for="(item,j) in elementos" >
+                    <v-checkbox color="#1C5A71" v-for="(item,j) in elementos" >
                         <template v-slot:label>
                             <div>
-                                <v-row class="justified-center align-center">
-                                    <h3><v-icon>mdi-file</v-icon> {{ item }} </h3>
-                                    <v-btn class="ml-4" width="100" :href="links[j]" >Ver</v-btn>
-                                </v-row>
+                                <h3><v-icon>mdi-file</v-icon> <a class="btn btn-link" :href="links[j]">{{ item }}</a> </h3>
                             </div>
                         </template>
                     </v-checkbox>
@@ -42,9 +39,9 @@
 
                 <v-divider></v-divider>
 
-                <v-card variant="outlined">
-                    <h2>Unidad {{ i+1 }}: Sección 2</h2>
-                    <v-checkbox color="indigo">
+                <v-card class="mt-2" variant="outlined">
+                    <h2 class="ma-3">Unidad {{ i+1 }}: Sección 2</h2>
+                    <v-checkbox color="#1C5A71">
                         <template v-slot:label><div>
                             <h3><v-icon>mdi-note-edit</v-icon> Prueba {{ i+1 }} </h3>
                         </div></template>
