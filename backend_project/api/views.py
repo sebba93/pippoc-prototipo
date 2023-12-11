@@ -1,3 +1,4 @@
+from django.http import FileResponse, HttpResponse
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response
 from rest_framework import serializers
@@ -7,6 +8,7 @@ from .serializer import ParticipanteSerializer, Tutor_IASerializer, TutorSeriali
 from rest_framework import viewsets
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -29,7 +31,7 @@ class CursoViewSet(viewsets.ModelViewSet):
 class DocumentoViewSet(viewsets.ModelViewSet):
     queryset = Documento.objects.all()
     serializer_class = DocumentoSerializer
-
+"""
     def create(self, request, *args, **kwargs):
         file_content = request.data.get('documento', None)
 
@@ -55,5 +57,19 @@ class DocumentoViewSet(viewsets.ModelViewSet):
                 archivo=default_file
             )
             serializer = self.get_serializer(documento_instance)
-            return Response(serializer.data, status=201)
-        
+            return Response(serializer.data, status=201)"""
+
+@csrf_exempt        
+def upload_file(request):
+    archivo = request.FILES['archivo']
+    name = archivo.name
+    type = archivo.content_type
+    doc = Documento.objects.create(nombre=name, formato=type, archivo=archivo, curso_id = 1)
+    doc.save()
+    print(request.FILES, '\n', archivo, '\n')
+    return HttpResponse('hola')
+
+@csrf_exempt
+def view_file(request, name):
+    path = './api/archivos/' + name
+    return FileResponse(open(path, 'rb'), content_type = 'application/pdf')

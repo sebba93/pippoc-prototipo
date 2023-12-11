@@ -57,7 +57,8 @@
                     </v-checkbox>
 
                     
-                    <v-btn> Agregar Elemento a Sección</v-btn>
+                    <v-btn @click="FileUploader = !FileUploader"> Agregar Elemento a Sección</v-btn>
+                    <FileUploader v-model="FileUploader"/>
                 </v-card>
 
                 <v-divider></v-divider>
@@ -110,13 +111,18 @@
   
 <script>
 import { getDocumentos } from '@/axios/documentosAxios';
+import FileUploader from '@/components/displays/FileUploader.vue'
 
 export default {
   data() {
     return {
       documentos: [],
       tab: null, // Add a tab property for v-model
+      FileUploader: false
     };
+  },
+  components:{
+    FileUploader
   },
   mounted() {
     // Fetch documentos from Django backend using the imported function

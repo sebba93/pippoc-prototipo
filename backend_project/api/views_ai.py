@@ -13,7 +13,7 @@ import json
 # models
 EMBEDDING_MODEL = "text-embedding-ada-002"
 GPT_MODEL = "gpt-3.5-turbo"
-openai.api_key = "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"
+openai.api_key = "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"
 
 #client = OpenAI(api_key="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")
 

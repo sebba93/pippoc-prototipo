@@ -26,7 +26,7 @@ class Tutor(models.Model):
 
 class Documento(models.Model):
     nombre = models.CharField(max_length=60)
-    tipo = models.CharField(max_length=30)
     formato = models.CharField(max_length=30)
+    archivo = models.FileField(upload_to="api/archivos")
     #FK
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE, blank=True)

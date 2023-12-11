@@ -32,7 +32,7 @@
   ></v-carousel-item>
 
   <v-carousel-item
-    src="https://cdn.discordapp.com/attachments/1146919558515544207/1154237177492951072/apex-intelligence-high-resolution-color-logo.png?ex=65839da3&is=657128a3&hm=dfaa55b513adc423df65c4b6d0ebfb58c1f50eddbb3de4f9520138aae003bc4b&"
+    src="https://cdn.discordapp.com/attachments/1146919558515544207/1183475831662715050/apex-intelligence-high-resolution-color-logo_1.png?ex=658878c2&is=657603c2&hm=f93146d68f68991847dc74a1c7473c77793b0fbad5dd8c232607ff9400e2bca4&"
     
   ></v-carousel-item>
 </v-carousel>
